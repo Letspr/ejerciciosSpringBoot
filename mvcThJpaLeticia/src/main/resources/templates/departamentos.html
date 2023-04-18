@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<!-- Estas thymeLeaf son taglib, que en realidad son código java -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Departamentos</title>
+
+</head>
+<body>
+<h2>Departamentos</h2>
+<div>
+<ul>
+<li th:each="dep:${departamentos}"> 
+<!-- bucle forEach. dep es la variable del foreach. dep.nombre hace referencia al dep.getNombre()-->
+ 	<span th:text="${dep.nombre}"></span>
+ 	<!-- para poner el th necesitamos una etiqueta. span o p son buenas opciones-->
+    <a  th:href="@{'/departamentos/'+${dep.id}}"><img src="https://img.icons8.com/material-sharp/24/null/zoom-in--v1.png" /></a>
+    <!-- esto es una imagen que sirve de enlace a /departamentos-->
+ </li>
+</ul>
+
+
+
+
+</div>
+<h2>Crear Departamento</h2>
+<div>
+<form th:action="@{/departamentos}"  method="post">
+<!-- 		Ésto es un formulario sin más hay que tener cuidado de que el name de los campos sea igual que -->
+<!-- 		el nombre de los atributos, para que lo pueda mapear -->
+    	<p>Id: <input type="text" name="id" /></p>
+        <p>Nombre: <input type="text" name="nombre" /></p>
+        <p>Jefe del departamento: <input type="text" name="managerId" /></p>
+        <p>Direccion: <input type="text" name="direccionId" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</div>
+</body>
+</html>
